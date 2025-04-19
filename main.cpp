@@ -14,7 +14,7 @@
 
 using namespace std;
 
-Queue<int> q(3);
+Queue<int> q(2);
 
 void Write_f(int value)
 {
@@ -52,46 +52,35 @@ void Read_timeout_f()
 
 int main() 
 {
-  int i;
 
-  // thread t_read_1(Read_f);
-  // thread t_read_2(Read_f);
-  // thread t_read_3(Read_f);
-
-  /*
-  thread t_write_1(Write_f, 20);
-  this_thread::sleep_for(chrono::milliseconds(1000));
-
-  thread t_write_2(Write_f, 21);
-  this_thread::sleep_for(chrono::milliseconds(1000));
-
-  thread t_write_3(Write_f, 22);
-  this_thread::sleep_for(chrono::milliseconds(1000));
-
-  thread t_write_4(Write_f, 23);
-  this_thread::sleep_for(chrono::milliseconds(1000));
-
-  thread t_read_1(Read_f);
-  this_thread::sleep_for(chrono::milliseconds(1000));
-  thread t_read_2(Read_f);
-  this_thread::sleep_for(chrono::milliseconds(1000));
-  thread t_read_3(Read_f);
-
-  thread t_read_3(Read_f);
-  */
-  thread t_read_timeout(Read_timeout_f);
-
-
-  /*
-  t_read_1.join();
-  t_read_2.join();
-  t_read_3.join();
+  // execution as requested by exercise script
+  thread t_write_1(Write_f, 1);
   t_write_1.join();
+    
+  thread t_read_1(Read_f);
+  t_read_1.join();
+  
+  thread t_write_2(Write_f, 2);
   t_write_2.join();
+  thread t_write_3(Write_f, 3);
   t_write_3.join();
+  thread t_write_4(Write_f, 4);
   t_write_4.join();
-  */
-  t_read_timeout.join();
+
+  thread t_read_2(Read_f);
+  t_read_2.join();
+  thread t_read_3(Read_f);
+  t_read_3.join();
+
+  thread t_read_4(Read_f);
+  thread t_write_5(Write_f, 5);
+  
+  t_read_4.join();
+  t_write_5.join();
+
+  
+  // thread t_read_timeout(Read_timeout_f);
+  // t_read_timeout.join();
 
 
   return 0;
